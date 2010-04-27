@@ -37,6 +37,7 @@ class EZtpl
 
   /**
    * Function displaying the template after processing the data
+   * @param $context the name of the context to display
    */
   public function display($context = "|root|")
   {
@@ -61,8 +62,13 @@ class EZtpl
       $variable = $varData[0];
     }
     $this->contextInstances[$context]->setVariable($variable, $varValue);
+    return $this;
   }
 
+  /**
+   * Initializes a context to work with
+   * @param $context The context name
+   */
   public function openContext($context = "|root|")
   {
     if (!isset($this->contextInstances[$context])) {
@@ -72,6 +78,10 @@ class EZtpl
     return $this;
   }
 
+  /**
+   * Closes a context
+   * @param $context The context name
+   */
   public function closeContext($context = "|root|")
   {
     if (!isset($this->contextInstances[$context])) {
@@ -123,6 +133,10 @@ class EZtpl
     return $matchedData[$type];
   }
 
+  /**
+   * Creates the instance of the context when parsing the code
+   * @param $context The name of the context to instanciate
+   */
   private function createContext($context = "|root|")
   {
     $this->contextInstances[$context] = new EZContext($context, $this->contexts[$context]['src']);

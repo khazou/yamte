@@ -15,6 +15,11 @@ class EZContext
   private $generatedCode;
   private $used = false;
 
+  /**
+   * Simple constructor for the context (is only invoked by the EZtpl::createContext() method)
+   * @param $name The name of the context
+   * @param $sourceCode The context's source code
+   */
   public function __construct($name, $sourceCode)
   {
     $this->name = $name;
@@ -22,6 +27,11 @@ class EZContext
     $this->parseCode();
   }
 
+  /**
+   * Sets a variable in the context
+   * @param $varName name of the variable
+   * @param $varValue value of the variable
+   */
   public function setVariable($varName, $varValue)
   {
     if (in_array($varName, $this->varList)) {
@@ -31,6 +41,9 @@ class EZContext
     }
   }
 
+  /**
+   * Closes a context and generates the code
+   */
   public function closeContext()
   {
     if (!$this->used) {
@@ -41,6 +54,9 @@ class EZContext
     $this->used = false;
   }
 
+  /**
+   * initializes the context
+   */
   public function init()
   {
     if ($this->used) {
@@ -50,16 +66,25 @@ class EZContext
     $this->tempCode = $this->sourceCode;
   }
 
+  /**
+   * Resets the context after generating the code
+   */
   public function reset(){
     $this->used = false;
     $this->generated = NULL;
   }
 
+  /**
+   * Simple accessor for the code that has been generated
+   */
   public function getGeneratedCode()
   {
     return $this->generatedCode;
   }
 
+  /**
+   * Generates the code for the context
+   */
   private function generateCode()
   {
     if ($this->used) {
@@ -81,13 +106,18 @@ class EZContext
     }
   }
 
-
-
+  /**
+   * Adds a child context to the $subContextList array
+   * @param $subContext the instance of the child context
+   */
   public function addSubContext(&$subContext)
   {
     $this->subContextList[$subContext->name] = &$subContext;
   }
 
+  /**
+   * Parses the context's source code for variables
+   */
   private function parseCode()
   {
     $regexp = "/\{#([a-zA-Z0-9_]+)\}/";
