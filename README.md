@@ -8,7 +8,7 @@ EZtpl is a simple template engine built in PHP, based on VTemplate. Whereas the 
 
     git clone https://khazou@github.com/khazou/eztpl.git
 
-or simply download the archive at [this place](http://github.com/downloads/khazou/eztpl/khazou-eztpl-0.1.tar.gz "Milestone 0.1 on github").
+or simply download the archive at [http://github.com/downloads/khazou/eztpl/khazou-eztpl-0.1.tar.gz](http://github.com/downloads/khazou/eztpl/khazou-eztpl-0.1.tar.gz "Milestone 0.1 on github").
 
 ## HTML syntax
 
@@ -53,3 +53,7 @@ or simply download the archive at [this place](http://github.com/downloads/khazo
     } catch (eztpl\EZException $e) {
       echo $e->getTraceData();
     }
+
+## Licence
+
+EZtpl is released under the GPLv3 Licence. You can find the official licence text on [http://www.gnu.org/licenses/gpl.html](http://www.gnu.org/licenses/gpl.html "GPLv3 Licence").
