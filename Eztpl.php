@@ -13,6 +13,7 @@ class EZtpl
 
   private $templateData;
   private $contexts = array();
+  private $contextInstances = array();
 
   /**
    * Simple constructor taking the template file as a parameter
@@ -24,6 +25,7 @@ class EZtpl
       if ($fileData = fopen($templateFile, 'r')) {
         $this->templateData = fread($fileData, filesize($templateFile));
         $this->parseTemplate($this->templateData);
+        $this->createContext();
       } else {
         throw new EZException(2, $templateFile);
       }
@@ -37,6 +39,7 @@ class EZtpl
    */
   public function display()
   {
+    echo $this->closeContext();
   }
 
   public function setVariable($prefixedVarName, $varValue)
@@ -50,6 +53,12 @@ class EZtpl
       $context = "|root|";
       $variable = $varData[0];
     }
+    $this->contextInstances[$context]->setVariable($variable, $varValue);
+  }
+
+  public function closeContext($context = "|root|")
+  {
+    return $this->contextInstances[$context]->closeContext();
   }
 
   /**
@@ -86,11 +95,17 @@ class EZtpl
    * Function returning the data inside the context tags
    * @param $templateSource the source to check
    * @param $contextName the name of the context to retrieve
+   * @param $type 0 if you want the context with the tags and 1 if you don't want the tags
    */
   private function getContextSource($templateSource, $contextName, $type = 0)
   {
     preg_match("#<!--EZT_$contextName-->(.*)<!--/EZT_$contextName-->#s", $templateSource, $matchedData);
     return $matchedData[$type];
+  }
+
+  private function createContext($context = "|root|")
+  {
+    $this->contextInstances[$context] = new EZContext($context, $this->contexts[$context]['src']);
   }
 
   /**
