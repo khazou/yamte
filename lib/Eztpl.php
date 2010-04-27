@@ -2,12 +2,13 @@
 
 namespace eztpl;
 
-
-
 require_once 'EZException.php';
 require_once 'EZContext.php';
 require_once 'EZFunctions.php';
 
+/** EZtpl
+ * The main template class
+ */
 class EZtpl
 {
 

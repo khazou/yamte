@@ -5,6 +5,9 @@ namespace eztpl;
 require_once 'EZException.php';
 require_once 'EZFunctions.php';
 
+/** EZContext
+ * The class used by contexts
+ */
 class EZContext
 {
   private $name;

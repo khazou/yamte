@@ -2,17 +2,29 @@
 
 namespace eztpl;
 
+/** EZException
+ * The exception class dedicated to EZtpl
+ */
 class EZException extends \Exception
 {
   public $message;
   private $errCode;
   private $params;
+
+  /**
+   * The constructor of the exception class
+   * @param $errCode Error code of the exception
+   * @param $params Parameters of the exception (can be an array or a string)
+   */
   public function __construct($errCode, $params)
   {
     $this->errCode = $errCode;
     $this->params = $params;
   }
 
+  /**
+   * Returns the error message
+   */
   public function getTraceData()
   {
     switch ($this->errCode) {
