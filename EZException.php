@@ -28,6 +28,18 @@ class EZException extends \Exception
       case 4:
         return "The context $this->params is already defined. Please use another name";
         break;
+      case 5:
+        return "The context $this->params isn't closed";
+        break;
+      case 6:
+        return "The variable " . $this->params[1] . " can't be assigned in the " . $this->params[0] . " context";
+        break;
+      case 7:
+
+        break;
+      case 8:
+
+        break;
       default:
         return "There is an error !<br />Error Code : $this->errCode<br />Parameters : $this->params<br />";
     }

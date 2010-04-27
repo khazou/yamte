@@ -26,6 +26,7 @@ class EZtpl
         $this->templateData = fread($fileData, filesize($templateFile));
         $this->parseTemplate($this->templateData);
         $this->createContext();
+        $this->openContext();
       } else {
         throw new EZException(2, $templateFile);
       }
@@ -37,11 +38,17 @@ class EZtpl
   /**
    * Function displaying the template after processing the data
    */
-  public function display()
+  public function display($context = "|root|")
   {
-    echo $this->closeContext();
+    $this->closeContext($context);
+    echo $this->contextInstances[$context]->getGeneratedCode();
   }
 
+  /**
+   * Function setting the value of a variable in the template
+   * @param $prefixedVarName Name of the variable with the context as a prefix if the variable is a context variable Ex: my_context.my_var
+   * @param $varValue Value of the variable
+   */
   public function setVariable($prefixedVarName, $varValue)
   {
     //If the variable has a prefix
@@ -56,9 +63,22 @@ class EZtpl
     $this->contextInstances[$context]->setVariable($variable, $varValue);
   }
 
+  public function openContext($context = "|root|")
+  {
+    if (!isset($this->contextInstances[$context])) {
+      throw new EZException(9, $context);
+    }
+    $this->contextInstances[$context]->init();
+    return $this;
+  }
+
   public function closeContext($context = "|root|")
   {
-    return $this->contextInstances[$context]->closeContext();
+    if (!isset($this->contextInstances[$context])) {
+      throw new EZException(9, $context);
+    }
+    $this->contextInstances[$context]->closeContext();
+    return $this;
   }
 
   /**
@@ -106,6 +126,14 @@ class EZtpl
   private function createContext($context = "|root|")
   {
     $this->contextInstances[$context] = new EZContext($context, $this->contexts[$context]['src']);
+
+    // Add subcontexts if found
+    if(@count($this->contexts[$context]['children'])) {
+      foreach ($this->contexts[$context]['children'] as $childContext) {
+        $this->createContext($childContext);
+        $this->contextInstances[$context]->addSubContext($this->contextInstances[$childContext]);
+      }
+    }
   }
 
   /**
@@ -130,7 +158,7 @@ class EZtpl
           // Execute the parseTemplate method for the context found
           $this->parseTemplate($this->getContextSource($this->contexts[$context]['src'], $childContext, 1), $childContext);
           // Add the context to the list of childs
-          $this->contexts[$context]['childs'][] = $childContext;
+          $this->contexts[$context]['children'][] = $childContext;
           // Replace the context data by an identifier in the source
           $this->contexts[$context]['src'] = str_replace($this->getContextSource($this->contexts[$context]['src'], $childContext, 0),"|$childContext|", $this->contexts[$context]['src']);
           if (count(explode("|$childContext|", $this->contexts[$context]['src'])) > 2) {

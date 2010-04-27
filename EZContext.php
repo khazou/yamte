@@ -13,22 +13,19 @@ class EZContext
   private $subContextList = array();
   private $tempCode;
   private $generatedCode;
-  private $used;
+  private $used = false;
 
   public function __construct($name, $sourceCode)
   {
     $this->name = $name;
     $this->sourceCode = $sourceCode;
-    //echo $this->sourceCode;
     $this->parseCode();
-    $this->init();
   }
 
   public function setVariable($varName, $varValue)
   {
     if (in_array($varName, $this->varList)) {
       $this->tempCode = preg_replace('/\{#' . $varName . '\}/', $varValue, $this->tempCode);
-      //echo $this->tempCode;
     } else {
       throw new EZException(6, array($this->name, $varName));
     }
@@ -36,23 +33,59 @@ class EZContext
 
   public function closeContext()
   {
-    return $this->generateCode();
+    if (!$this->used) {
+      throw new EZException(8, $this->name);
+    }
+    $this->generateCode();
+
+    $this->used = false;
   }
 
-  private function init()
+  public function init()
   {
+    if ($this->used) {
+      throw new EZException(7, $this->name);
+    }
     $this->used = true;
     $this->tempCode = $this->sourceCode;
   }
 
-  public function generateCode()
+  public function reset(){
+    $this->used = false;
+    $this->generated = NULL;
+  }
+
+  public function getGeneratedCode()
+  {
+    return $this->generatedCode;
+  }
+
+  private function generateCode()
   {
     if ($this->used) {
-      $this->generatedCode = $this->tempCode;
+      // Replace all unused variables by an empty string
+      $this->tempCode = preg_replace("/\{#([a-zA-Z0-9_]+)\}/", "", $this->tempCode);
+      // Generate all children contexts code
+      if (count($this->subContextList)) {
+        foreach (array_keys($this->subContextList) as $subContext) {
+          // Generate the children contexts code and reset them
+          $text = ($this->subContextList[$subContext]->used) ? $this->subContextList[$subContext]->generateCode() : $this->subContextList[$subContext]->generatedCode;
+          $this->tempCode = preg_replace("/(\|$subContext\|)/", $text, $this->tempCode);
+          $this->subContextList[$subContext]->reset();
+        }
+      }
+      $this->generatedCode .= $this->tempCode;
       return $this->generatedCode;
     } else {
       return $this->generatedCode;
     }
+  }
+
+
+
+  public function addSubContext(&$subContext)
+  {
+    $this->subContextList[$subContext->name] = &$subContext;
   }
 
   private function parseCode()
