@@ -20,9 +20,9 @@ or simply download the archive at [http://github.com/downloads/khazou/yamte/khaz
 ### Adding contexts
 
     <table>
-    <!--EZT_my_context-->
+    <!--YAT_my_context-->
       <tr><td>{#first_table_data}</td><td>{#second_table_data}</td></tr>
-    <!--/EZT_my_context-->
+    <!--/YAT_my_context-->
     </table>
 
 ## PHP syntax

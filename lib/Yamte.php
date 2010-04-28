@@ -1,15 +1,15 @@
 <?php
 
-namespace eztpl;
+namespace yamte;
 
-require_once 'EZException.php';
-require_once 'EZContext.php';
-require_once 'EZFunctions.php';
+require_once 'YAException.php';
+require_once 'YAContext.php';
+require_once 'YAFunctions.php';
 
-/** EZtpl
+/** Yamte
  * The main template class
  */
-class EZtpl
+class Yamte
 {
 
   private $templateData;
@@ -29,10 +29,10 @@ class EZtpl
         $this->createContext();
         $this->openContext();
       } else {
-        throw new EZException(2, $templateFile);
+        throw new YAException(2, $templateFile);
       }
     } else {
-      throw new EZException(1, $templateFile);
+      throw new YAException(1, $templateFile);
     }
   }
 
@@ -73,7 +73,7 @@ class EZtpl
   public function openContext($context = "|root|")
   {
     if (!isset($this->contextInstances[$context])) {
-      throw new EZException(9, $context);
+      throw new YAException(9, $context);
     }
     $this->contextInstances[$context]->init();
     return $this;
@@ -86,7 +86,7 @@ class EZtpl
   public function closeContext($context = "|root|")
   {
     if (!isset($this->contextInstances[$context])) {
-      throw new EZException(9, $context);
+      throw new YAException(9, $context);
     }
     $this->contextInstances[$context]->closeContext();
     return $this;
@@ -98,7 +98,7 @@ class EZtpl
    */
   private function getContextName($templateSource)
   {
-    $regexp = "<!--EZT_([a-zA-Z0-9_]+)-->";
+    $regexp = "<!--YAT_([a-zA-Z0-9_]+)-->";
     if(preg_match($regexp, $templateSource, $matchedData)) {
       return $matchedData[1];
     } else {
@@ -113,12 +113,12 @@ class EZtpl
    */
   private function hasContextEndTag($templateSource, $contextName)
   {
-    $regexp = "<!--/EZT_" . $contextName . "-->";
+    $regexp = "<!--/YAT_" . $contextName . "-->";
     preg_match($regexp, $templateSource, $matchedData);
     if (count($matchedData)) {
       return true;
     } else {
-      throw new EZException(3, $contextName);
+      throw new YAException(3, $contextName);
     }
   }
 
@@ -130,7 +130,7 @@ class EZtpl
    */
   private function getContextSource($templateSource, $contextName, $type = 0)
   {
-    preg_match("#<!--EZT_$contextName-->(.*)<!--/EZT_$contextName-->#s", $templateSource, $matchedData);
+    preg_match("#<!--YAT_$contextName-->(.*)<!--/YAT_$contextName-->#s", $templateSource, $matchedData);
     return $matchedData[$type];
   }
 
@@ -140,7 +140,7 @@ class EZtpl
    */
   private function createContext($context = "|root|")
   {
-    $this->contextInstances[$context] = new EZContext($context, $this->contexts[$context]['src']);
+    $this->contextInstances[$context] = new YAContext($context, $this->contexts[$context]['src']);
 
     // Add subcontexts if found
     if(@count($this->contexts[$context]['children'])) {
@@ -160,7 +160,7 @@ class EZtpl
   {
     // If the context already exists, throw an exception
     if (isset($this->contexts[$context])) {
-      throw new EZException(4, $context);
+      throw new YAException(4, $context);
     } else {
       // Save the context source in the array
       $this->contexts[$context]['src'] = $templateData;
@@ -168,7 +168,7 @@ class EZtpl
       while ($childContext = $this->getContextName($this->contexts[$context]['src'])) {
         // If the context isn't closed in the source, throw an exception
         if (!$this->hasContextEndTag($this->contexts[$context]['src'], $childContext)) {
-          throw new EZException(5, $childContext);
+          throw new YAException(5, $childContext);
         } else {
           // Execute the parseTemplate method for the context found
           $this->parseTemplate($this->getContextSource($this->contexts[$context]['src'], $childContext, 1), $childContext);
@@ -177,7 +177,7 @@ class EZtpl
           // Replace the context data by an identifier in the source
           $this->contexts[$context]['src'] = str_replace($this->getContextSource($this->contexts[$context]['src'], $childContext, 0),"|$childContext|", $this->contexts[$context]['src']);
           if (count(explode("|$childContext|", $this->contexts[$context]['src'])) > 2) {
-            throw new EZException(6, $childContext);
+            throw new YAException(6, $childContext);
           }
         }
       }
