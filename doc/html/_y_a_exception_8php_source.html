@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>EZtpl: lib/EZException.php Source File</title>
+<title>Yamte: lib/YAException.php Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen.css" rel="stylesheet" type="text/css"/>
 </head>
@@ -22,23 +22,23 @@
       <li><a href="globals.html"><span>Globals</span></a></li>
     </ul>
   </div>
-<h1>lib/EZException.php</h1><a href="_e_z_exception_8php.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 &lt;?php
+<h1>lib/YAException.php</h1><a href="_y_a_exception_8php.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 &lt;?php
 <a name="l00002"></a>00002 
-<a name="l00003"></a>00003 <span class="keyword">namespace </span>eztpl;
+<a name="l00003"></a>00003 <span class="keyword">namespace </span>yamte;
 <a name="l00004"></a>00004 
-<a name="l00008"></a><a class="code" href="class_e_z_exception.html">00008</a> <span class="keyword">class </span><a class="code" href="class_e_z_exception.html">EZException</a> <span class="keyword">extends</span> \Exception
+<a name="l00008"></a><a class="code" href="class_y_a_exception.html">00008</a> <span class="keyword">class </span><a class="code" href="class_y_a_exception.html">YAException</a> <span class="keyword">extends</span> \Exception
 <a name="l00009"></a>00009 {
-<a name="l00010"></a><a class="code" href="class_e_z_exception.html#abf17cb2dba2ed17cb28aa5f37deb5293">00010</a>   <span class="keyword">public</span> <a class="code" href="class_e_z_exception.html#abf17cb2dba2ed17cb28aa5f37deb5293">$message</a>;
+<a name="l00010"></a><a class="code" href="class_y_a_exception.html#abf17cb2dba2ed17cb28aa5f37deb5293">00010</a>   <span class="keyword">public</span> <a class="code" href="class_y_a_exception.html#abf17cb2dba2ed17cb28aa5f37deb5293">$message</a>;
 <a name="l00011"></a>00011   <span class="keyword">private</span> $errCode;
 <a name="l00012"></a>00012   <span class="keyword">private</span> $params;
 <a name="l00013"></a>00013 
-<a name="l00019"></a><a class="code" href="class_e_z_exception.html#a5325ca43ba080fcad1de6645505ede13">00019</a>   <span class="keyword">public</span> function <a class="code" href="class_e_z_exception.html#a5325ca43ba080fcad1de6645505ede13">__construct</a>($errCode, $params)
+<a name="l00019"></a><a class="code" href="class_y_a_exception.html#a5325ca43ba080fcad1de6645505ede13">00019</a>   <span class="keyword">public</span> function <a class="code" href="class_y_a_exception.html#a5325ca43ba080fcad1de6645505ede13">__construct</a>($errCode, $params)
 <a name="l00020"></a>00020   {
 <a name="l00021"></a>00021     $this-&gt;errCode = $errCode;
 <a name="l00022"></a>00022     $this-&gt;params = $params;
 <a name="l00023"></a>00023   }
 <a name="l00024"></a>00024 
-<a name="l00028"></a><a class="code" href="class_e_z_exception.html#aee5383afdd10c24aed79f3459ec46c93">00028</a>   <span class="keyword">public</span> function <a class="code" href="class_e_z_exception.html#aee5383afdd10c24aed79f3459ec46c93">getTraceData</a>()
+<a name="l00028"></a><a class="code" href="class_y_a_exception.html#aee5383afdd10c24aed79f3459ec46c93">00028</a>   <span class="keyword">public</span> function <a class="code" href="class_y_a_exception.html#aee5383afdd10c24aed79f3459ec46c93">getTraceData</a>()
 <a name="l00029"></a>00029   {
 <a name="l00030"></a>00030     <span class="keywordflow">switch</span> ($this-&gt;errCode) {
 <a name="l00031"></a>00031       <span class="keywordflow">case</span> 1:
@@ -71,7 +71,7 @@
 <a name="l00058"></a>00058   }
 <a name="l00059"></a>00059 }
 </pre></div></div>
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Tue Apr 27 17:47:40 2010 for EZtpl by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Wed Apr 28 10:29:18 2010 for Yamte by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

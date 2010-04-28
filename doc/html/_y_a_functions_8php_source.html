@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>EZtpl: lib/EZFunctions.php Source File</title>
+<title>Yamte: lib/YAFunctions.php Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen.css" rel="stylesheet" type="text/css"/>
 </head>
@@ -22,15 +22,15 @@
       <li><a href="globals.html"><span>Globals</span></a></li>
     </ul>
   </div>
-<h1>lib/EZFunctions.php</h1><a href="_e_z_functions_8php.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 &lt;?php
+<h1>lib/YAFunctions.php</h1><a href="_y_a_functions_8php.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 &lt;?php
 <a name="l00002"></a>00002 
-<a name="l00003"></a>00003 <span class="keyword">namespace </span>eztpl;
+<a name="l00003"></a>00003 <span class="keyword">namespace </span>yamte;
 <a name="l00004"></a>00004 
 <a name="l00006"></a>00006 <span class="comment">// Function:         dump</span>
 <a name="l00007"></a>00007 <span class="comment">// Inspired from:     PHP.net Contributions</span>
 <a name="l00008"></a>00008 <span class="comment">// Description: Helps with php debugging</span>
 <a name="l00009"></a>00009 
-<a name="l00010"></a><a class="code" href="_e_z_functions_8php.html#a08aa74be4d09f95f1d40d672d22ab46c">00010</a> function <a class="code" href="_e_z_functions_8php.html#a08aa74be4d09f95f1d40d672d22ab46c">dump</a>(&amp;$var, $info = FALSE)
+<a name="l00010"></a><a class="code" href="_y_a_functions_8php.html#a08aa74be4d09f95f1d40d672d22ab46c">00010</a> function <a class="code" href="_y_a_functions_8php.html#a08aa74be4d09f95f1d40d672d22ab46c">dump</a>(&amp;$var, $info = FALSE)
 <a name="l00011"></a>00011 {
 <a name="l00012"></a>00012     $scope = <span class="keyword">false</span>;
 <a name="l00013"></a>00013     $prefix = <span class="stringliteral">&#39;unique&#39;</span>;
@@ -46,7 +46,7 @@
 <a name="l00023"></a>00023 
 <a name="l00024"></a>00024     echo <span class="stringliteral">&quot;&lt;pre style=&#39;margin: 0px 0px 10px 0px; display: block; background: white; color: black; font-family: Verdana; border: 1px solid #cccccc; padding: 5px; font-size: 10px; line-height: 13px;&#39;&gt;&quot;</span>;
 <a name="l00025"></a>00025     <span class="keywordflow">if</span>($info != FALSE) echo <span class="stringliteral">&quot;&lt;b style=&#39;color: red;&#39;&gt;$info:&lt;/b&gt;&lt;br&gt;&quot;</span>;
-<a name="l00026"></a>00026     <a class="code" href="_e_z_functions_8php.html#a2895991766a61a9ca806557152ffd5a4">do_dump</a>($var, <span class="charliteral">&#39;$&#39;</span>.$vname);
+<a name="l00026"></a>00026     <a class="code" href="_y_a_functions_8php.html#a2895991766a61a9ca806557152ffd5a4">do_dump</a>($var, <span class="charliteral">&#39;$&#39;</span>.$vname);
 <a name="l00027"></a>00027     echo <span class="stringliteral">&quot;&lt;/pre&gt;&quot;</span>;
 <a name="l00028"></a>00028 }
 <a name="l00029"></a>00029 
@@ -54,7 +54,7 @@
 <a name="l00032"></a>00032 <span class="comment">// Inspired from:     PHP.net Contributions</span>
 <a name="l00033"></a>00033 <span class="comment">// Description: Better GI than print_r or var_dump</span>
 <a name="l00034"></a>00034 
-<a name="l00035"></a><a class="code" href="_e_z_functions_8php.html#a2895991766a61a9ca806557152ffd5a4">00035</a> function <a class="code" href="_e_z_functions_8php.html#a2895991766a61a9ca806557152ffd5a4">do_dump</a>(&amp;$var, $var_name = NULL, $indent = NULL, $reference = NULL)
+<a name="l00035"></a><a class="code" href="_y_a_functions_8php.html#a2895991766a61a9ca806557152ffd5a4">00035</a> function <a class="code" href="_y_a_functions_8php.html#a2895991766a61a9ca806557152ffd5a4">do_dump</a>(&amp;$var, $var_name = NULL, $indent = NULL, $reference = NULL)
 <a name="l00036"></a>00036 {
 <a name="l00037"></a>00037     $do_dump_indent = <span class="stringliteral">&quot;&lt;span style=&#39;color:#eeeeee;&#39;&gt;|&lt;/span&gt; &amp;nbsp;&amp;nbsp; &quot;</span>;
 <a name="l00038"></a>00038     $reference = $reference.$var_name;
@@ -87,14 +87,14 @@
 <a name="l00065"></a>00065             <span class="keywordflow">foreach</span>($keys as $name)
 <a name="l00066"></a>00066             {
 <a name="l00067"></a>00067                 $value = &amp;$avar[$name];
-<a name="l00068"></a>00068                 <a class="code" href="_e_z_functions_8php.html#a2895991766a61a9ca806557152ffd5a4">do_dump</a>($value, <span class="stringliteral">&quot;[&#39;$name&#39;]&quot;</span>, $indent.$do_dump_indent, $reference);
+<a name="l00068"></a>00068                 <a class="code" href="_y_a_functions_8php.html#a2895991766a61a9ca806557152ffd5a4">do_dump</a>($value, <span class="stringliteral">&quot;[&#39;$name&#39;]&quot;</span>, $indent.$do_dump_indent, $reference);
 <a name="l00069"></a>00069             }
 <a name="l00070"></a>00070             echo <span class="stringliteral">&quot;$indent)&lt;br&gt;&quot;</span>;
 <a name="l00071"></a>00071         }
 <a name="l00072"></a>00072         elseif(is_object($avar))
 <a name="l00073"></a>00073         {
 <a name="l00074"></a>00074             echo <span class="stringliteral">&quot;$indent$var_name &lt;span style=&#39;color:#a2a2a2&#39;&gt;$type&lt;/span&gt;&lt;br&gt;$indent(&lt;br&gt;&quot;</span>;
-<a name="l00075"></a>00075             <span class="keywordflow">foreach</span>($avar as $name=&gt;$value) <a class="code" href="_e_z_functions_8php.html#a2895991766a61a9ca806557152ffd5a4">do_dump</a>($value, <span class="stringliteral">&quot;$name&quot;</span>, $indent.$do_dump_indent, $reference);
+<a name="l00075"></a>00075             <span class="keywordflow">foreach</span>($avar as $name=&gt;$value) <a class="code" href="_y_a_functions_8php.html#a2895991766a61a9ca806557152ffd5a4">do_dump</a>($value, <span class="stringliteral">&quot;$name&quot;</span>, $indent.$do_dump_indent, $reference);
 <a name="l00076"></a>00076             echo <span class="stringliteral">&quot;$indent)&lt;br&gt;&quot;</span>;
 <a name="l00077"></a>00077         }
 <a name="l00078"></a>00078         elseif(is_int($avar)) echo <span class="stringliteral">&quot;$indent$var_name = &lt;span style=&#39;color:#a2a2a2&#39;&gt;$type(&quot;</span>.strlen($avar).<span class="stringliteral">&quot;)&lt;/span&gt; $type_color$avar&lt;/span&gt;&lt;br&gt;&quot;</span>;
@@ -109,7 +109,7 @@
 <a name="l00087"></a>00087 }
 <a name="l00088"></a>00088 
 </pre></div></div>
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Tue Apr 27 17:47:40 2010 for EZtpl by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Wed Apr 28 10:29:18 2010 for Yamte by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>
