@@ -1,14 +1,14 @@
-# EZtpl - EZ Template PHP Library
+# Yamte - Yet Another Minimalistic Template Engine
 
 ## About
 
-EZtpl is a simple template engine built in PHP, based on VTemplate. Whereas the code syntax has been kept in its majority, the engine has been fully rebuilt with functionalities provided by PHP5.3 (which is required, naturally !).
+Yamte is a simple template engine built in PHP, based on VTemplate. Whereas the code syntax has been kept in its majority, the engine has been fully rebuilt with functionalities provided by PHP5.3 (which is required, naturally !).
 
 ## Download instructions
 
-    git clone https://khazou@github.com/khazou/eztpl.git
+    git clone https://khazou@github.com/khazou/yamte.git
 
-or simply download the archive at [http://github.com/downloads/khazou/eztpl/khazou-eztpl-0.1.tar.gz](http://github.com/downloads/khazou/eztpl/khazou-eztpl-0.1.tar.gz "Milestone 0.1 on github").
+or simply download the archive at [http://github.com/downloads/khazou/yamte/khazou-eztpl-0.1.tar.gz](http://github.com/downloads/khazou/yamte/khazou-eztpl-0.1.tar.gz "Milestone 0.1 on github").
 
 ## HTML syntax
 
@@ -30,9 +30,9 @@ or simply download the archive at [http://github.com/downloads/khazou/eztpl/khaz
 ### Adding the template to the page and instanciate the class :
 
     <?php
-    require_once 'path/to/Eztpl.php';
+    require_once 'path/to/Yamte.php';
     try {
-      $tpl = new eztpl\EZtpl('path/to/template.tpl');
+      $tpl = new yamte\Yamte('path/to/template.tpl');
 
 ### Setting variables value in the php side
 
@@ -50,10 +50,10 @@ or simply download the archive at [http://github.com/downloads/khazou/eztpl/khaz
 
 ### Ending the try-catch data
 
-    } catch (eztpl\EZException $e) {
+    } catch (yamte\YAException $e) {
       echo $e->getTraceData();
     }
 
 ## Licence
 
-EZtpl is released under the GPLv3 Licence. You can find the official licence text on [http://www.gnu.org/licenses/gpl.html](http://www.gnu.org/licenses/gpl.html "GPLv3 Licence").
+Yamte is released under the GPLv3 Licence. You can find the official licence text on [http://www.gnu.org/licenses/gpl.html](http://www.gnu.org/licenses/gpl.html "GPLv3 Licence").
