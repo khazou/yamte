@@ -8,8 +8,6 @@ Yamte is a simple template engine built in PHP, based on VTemplate. Whereas the 
 
     git clone https://khazou@github.com/khazou/yamte.git
 
-or simply download the archive at [http://github.com/downloads/khazou/yamte/khazou-eztpl-0.1.tar.gz](http://github.com/downloads/khazou/yamte/khazou-eztpl-0.1.tar.gz "Milestone 0.1 on github").
-
 ## HTML syntax
 
 ### Defining variables in the code
