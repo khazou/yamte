@@ -54,4 +54,4 @@ Yamte is a simple template engine built in PHP, based on VTemplate. Whereas the 
 
 ## Licence
 
-Yamte is released under the GPLv3 Licence. You can find the official licence text on [http://www.gnu.org/licenses/gpl.html](http://www.gnu.org/licenses/gpl.html "GPLv3 Licence").
+Yamte is released under the LGPLv3 Licence. You can find the official licence text on [http://www.gnu.org/licenses/lgpl.html](http://www.gnu.org/licenses/lgpl.html "LGPLv3 Licence").
