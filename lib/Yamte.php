@@ -1,7 +1,5 @@
 <?php
 
-namespace yamte;
-
 require_once 'YAException.php';
 require_once 'YAContext.php';
 require_once 'YAFunctions.php';

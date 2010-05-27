@@ -1,7 +1,5 @@
 <?php
 
-namespace eztpl;
-
 /** EZException
  * The exception class dedicated to EZtpl
  */

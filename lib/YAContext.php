@@ -1,7 +1,5 @@
 <?php
 
-namespace eztpl;
-
 require_once 'EZException.php';
 require_once 'EZFunctions.php';
 

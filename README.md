@@ -1,12 +1,14 @@
-# Yamte - Yet Another Minimalistic Template Engine
+# Yamte - Yet Another Minimalistic Template Engine (php5.2 version)
 
 ## About
 
 Yamte is a simple template engine built in PHP, based on VTemplate. Whereas the code syntax has been kept in its majority, the engine has been fully rebuilt with functionalities provided by PHP5.3 (which is required, naturally !).
 
+Now a php5.2 version exists !
+
 ## Download instructions
 
-    git clone https://khazou@github.com/khazou/yamte.git
+    git clone https://khazou@github.com/khazou/yamte.git -b php5.2
 
 ## HTML syntax
 
@@ -30,7 +32,7 @@ Yamte is a simple template engine built in PHP, based on VTemplate. Whereas the 
     <?php
     require_once 'path/to/Yamte.php';
     try {
-      $tpl = new yamte\Yamte('path/to/template.tpl');
+      $tpl = new Yamte('path/to/template.tpl');
 
 ### Setting variables value in the php side
 
@@ -48,7 +50,7 @@ Yamte is a simple template engine built in PHP, based on VTemplate. Whereas the 
 
 ### Ending the try-catch data
 
-    } catch (yamte\YAException $e) {
+    } catch (YAException $e) {
       echo $e->getTraceData();
     }
 

@@ -1,7 +1,5 @@
 <?php
 
-namespace eztpl;
-
 ////////////////////////////////////////////////////////
 // Function:         dump
 // Inspired from:     PHP.net Contributions
