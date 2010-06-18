@@ -94,7 +94,7 @@
 <a name="l00094"></a>00094 
 <a name="l00099"></a>00099   <span class="keyword">private</span> function getContextName($templateSource)
 <a name="l00100"></a>00100   {
-<a name="l00101"></a>00101     $regexp = <span class="stringliteral">&quot;&lt;!--EZT_([a-zA-Z0-9_]+)--&gt;&quot;</span>;
+<a name="l00101"></a>00101     $regexp = <span class="stringliteral">&quot;&lt;!--YAT_([a-zA-Z0-9_]+)--&gt;&quot;</span>;
 <a name="l00102"></a>00102     <span class="keywordflow">if</span>(preg_match($regexp, $templateSource, $matchedData)) {
 <a name="l00103"></a>00103       <span class="keywordflow">return</span> $matchedData[1];
 <a name="l00104"></a>00104     } <span class="keywordflow">else</span> {
@@ -104,7 +104,7 @@
 <a name="l00108"></a>00108 
 <a name="l00114"></a>00114   <span class="keyword">private</span> function hasContextEndTag($templateSource, $contextName)
 <a name="l00115"></a>00115   {
-<a name="l00116"></a>00116     $regexp = <span class="stringliteral">&quot;&lt;!--/EZT_&quot;</span> . $contextName . <span class="stringliteral">&quot;--&gt;&quot;</span>;
+<a name="l00116"></a>00116     $regexp = <span class="stringliteral">&quot;&lt;!--/YAT_&quot;</span> . $contextName . <span class="stringliteral">&quot;--&gt;&quot;</span>;
 <a name="l00117"></a>00117     preg_match($regexp, $templateSource, $matchedData);
 <a name="l00118"></a>00118     <span class="keywordflow">if</span> (count($matchedData)) {
 <a name="l00119"></a>00119       <span class="keywordflow">return</span> <span class="keyword">true</span>;
@@ -115,7 +115,7 @@
 <a name="l00124"></a>00124 
 <a name="l00131"></a>00131   <span class="keyword">private</span> function getContextSource($templateSource, $contextName, $type = 0)
 <a name="l00132"></a>00132   {
-<a name="l00133"></a>00133     preg_match(<span class="stringliteral">&quot;#&lt;!--EZT_$contextName--&gt;(.*)&lt;!--/EZT_$contextName--&gt;#s&quot;</span>, $templateSource, $matchedData);
+<a name="l00133"></a>00133     preg_match(<span class="stringliteral">&quot;#&lt;!--YAT_$contextName--&gt;(.*)&lt;!--/YAT_$contextName--&gt;#s&quot;</span>, $templateSource, $matchedData);
 <a name="l00134"></a>00134     <span class="keywordflow">return</span> $matchedData[$type];
 <a name="l00135"></a>00135   }
 <a name="l00136"></a>00136 

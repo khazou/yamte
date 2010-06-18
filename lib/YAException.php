@@ -1,9 +1,9 @@
 <?php
 
-/** EZException
+/** YAException
  * The exception class dedicated to EZtpl
  */
-class EZException extends \Exception
+class YAException extends Exception
 {
   public $message;
   private $errCode;

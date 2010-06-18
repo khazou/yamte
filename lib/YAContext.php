@@ -1,12 +1,12 @@
 <?php
 
-require_once 'EZException.php';
-require_once 'EZFunctions.php';
+require_once 'YAException.php';
+require_once 'YAFunctions.php';
 
-/** EZContext
+/** YAContext
  * The class used by contexts
  */
-class EZContext
+class YAContext
 {
   private $name;
   private $sourceCode;
@@ -38,7 +38,7 @@ class EZContext
     if (in_array($varName, $this->varList)) {
       $this->tempCode = preg_replace('/\{#' . $varName . '\}/', $varValue, $this->tempCode);
     } else {
-      throw new EZException(6, array($this->name, $varName));
+      throw new YAException(6, array($this->name, $varName));
     }
   }
 
@@ -48,7 +48,7 @@ class EZContext
   public function closeContext()
   {
     if (!$this->used) {
-      throw new EZException(8, $this->name);
+      throw new YAException(8, $this->name);
     }
     $this->generateCode();
 
@@ -61,7 +61,7 @@ class EZContext
   public function init()
   {
     if ($this->used) {
-      throw new EZException(7, $this->name);
+      throw new YAException(7, $this->name);
     }
     $this->used = true;
     $this->tempCode = $this->sourceCode;
